@@ -1,0 +1,70 @@
+@startuml
+'https://plantuml.com/class-diagram'
+
+class Main
+
+package frontend{
+    class JavaFX21
+
+    class MenuLogIn{
+
+        + mostrarOpciones(): void
+        + mostrarPaciente(): void
+        + mostrarPacientes(): void
+        + mostrarMedico(): void
+        + mostrarPerfil(): void
+        + mostrarMedicos(): void
+
+    }
+    class MenuPrincipal{
+
+        + obtenerDatosDeInicioDeSesion(): void
+        + iniciarSesion(): void
+
+    }
+}
+
+package backend {
+
+    enum Genero{
+
+        HOMBRE,
+        MUJER,
+        OTRO
+
+    }
+    class Paciente{
+
+        - nombreCompleto : String
+        - fechaDeNacimiento: String
+        - cedula : String
+        - edad : int
+        - peso : double
+        - genero: Genero
+        - antecedentes: Stack
+        - medicamentos: String
+        - medico : Medico
+
+    }
+    class Medico{
+
+        - usuario: String
+        - contraseña: String
+        + añadirPaciente(): void
+        + borrarPaciente(): void
+        + actualizarPaciente(): void
+        + buscarPaciente(): void
+        + registrarCitaMedica():void
+        + añadirNuevoMedico(): void
+        + actualizarPerfil(): void
+
+    }
+}
+
+Main --> frontend
+backend -r-> frontend
+Medico -->"*" Paciente: pacientes
+Paciente -->"1" Genero
+MenuLogIn --> "*"Medico: medicos
+MenuPrincipal ..> MenuLogIn
+@enduml
