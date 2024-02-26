@@ -4,37 +4,27 @@
 class Main
 
 package frontend{
-    class JavaFX21
-
     class MenuLogIn{
-
         + mostrarOpciones(): void
         + mostrarPaciente(): void
         + mostrarPacientes(): void
         + mostrarMedico(): void
         + mostrarPerfil(): void
         + mostrarMedicos(): void
-
     }
     class MenuPrincipal{
-
         + obtenerDatosDeInicioDeSesion(): void
         + iniciarSesion(): void
-
     }
 }
 
 package backend {
-
     enum Genero{
-
         HOMBRE,
         MUJER,
         OTRO
-
     }
     class Paciente{
-
         - nombreCompleto : String
         - fechaDeNacimiento: String
         - cedula : String
@@ -44,10 +34,8 @@ package backend {
         - antecedentes: Stack
         - medicamentos: String
         - medico : Medico
-
     }
     class Medico{
-
         - usuario: String
         - contraseña: String
         + añadirPaciente(): void
@@ -57,7 +45,6 @@ package backend {
         + registrarCitaMedica():void
         + añadirNuevoMedico(): void
         + actualizarPerfil(): void
-
     }
 }
 

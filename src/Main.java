@@ -3,18 +3,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class Main{
     public static void main(String[] args) {
-        System.out.println("Hello world!");
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        Group root = new Group();
-        Scene scene = new Scene(root);
-
-        stage.setScene(scene);
-        stage.show();
+        Inicializador.inicializar(args);
     }
 }
