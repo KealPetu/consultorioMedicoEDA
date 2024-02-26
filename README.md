@@ -7,7 +7,7 @@ Programa de un Consultorio Medico usando Estructuras de Datos y Algoritmos
 ## Configuracion de la VM
 ### Linux/Mac
 
---module-path /path/to/javafx-sdk-21.0.2/lib --add-modules javafx.controls,javafx.fxml
+--module-path lib/JavaFX21 --add-modules javafx.controls,javafx.fxml
 
 ### Windows
 
