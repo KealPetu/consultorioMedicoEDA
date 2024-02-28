@@ -43,11 +43,10 @@ package backend {
         + actualizarPaciente(): void
         + buscarPaciente(): void
         + registrarCitaMedica():void
-        + añadirNuevoMedico(): void
         + actualizarPerfil(): void
     }
 }
-
+Main --> Inicalizador
 Main --> frontend
 backend -r-> frontend
 Medico -->"*" Paciente: pacientes
