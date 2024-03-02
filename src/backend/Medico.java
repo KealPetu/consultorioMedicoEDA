@@ -4,11 +4,11 @@ public class Medico {
     private String username;
     private String password;
 
-    public static String getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public static String getPassword() {
+    public String getPassword() {
         return password;
     }
 }

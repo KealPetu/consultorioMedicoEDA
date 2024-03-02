@@ -45,7 +45,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.MenuLogIn">
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.MenuLogIn">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -86,19 +86,23 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="292.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
       <children>
-            <Button fx:id="loginButton" defaultButton="true" layoutX="590.0" layoutY="440.0" mnemonicParsing="false" onAction="#compareInputWithList" text="Iniciar Sesion" textAlignment="CENTER" textOverrun="CLIP" />
-            <PasswordField fx:id="password" layoutX="560.0" layoutY="405.0" />
-            <TextField fx:id="username" layoutX="560.0" layoutY="360.0" />
-            <Label layoutX="475.0" layoutY="364.0" text="Username: " />
-            <Label layoutX="475.0" layoutY="409.0" text="Password: " textAlignment="CENTER" />
-            <Hyperlink fx:id="signUpLink" layoutX="599.0" layoutY="575.0" text="Registrarme" underline="true" />
-            <Label layoutX="468.0" layoutY="180.0" text="Consultorio Medico" textAlignment="CENTER">
+            <Button fx:id="loginButton" defaultButton="true" layoutX="262.0" layoutY="174.0" mnemonicParsing="false" onAction="#compararEntradaConLista" text="Iniciar Sesion" textAlignment="CENTER" textOverrun="CLIP" />
+            <PasswordField fx:id="password" layoutX="232.0" layoutY="139.0" />
+            <TextField fx:id="cedula" layoutX="232.0" layoutY="94.0" />
+            <Label layoutX="147.0" layoutY="98.0" text="Cedula: " />
+            <Label layoutX="147.0" layoutY="143.0" text="Password: " textAlignment="CENTER" />
+            <Hyperlink fx:id="signUpLink" layoutX="270.0" layoutY="255.0" onAction="#cambiarMenuSignUp" text="Registrarme" underline="true" />
+            <Label layoutX="147.0" layoutY="14.0" text="Consultorio Medico" textAlignment="CENTER">
                <font>
                   <Font name="Hack Regular" size="32.0" />
                </font>
             </Label>
+            <Label fx:id="errorMsg" layoutX="400.0" layoutY="143.0" opacity="0.0" text="La contrasena ingresada es incorrecta..." textAlignment="CENTER" textFill="RED">
+               <font>
+                  <Font size="12.0" />
+               </font></Label>
       </children>
     </AnchorPane>
   </children>
