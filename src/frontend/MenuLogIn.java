@@ -2,6 +2,7 @@ package frontend;
 
 import backend.ListaDeMedicos;
 import backend.Medico;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
 
 public class MenuLogIn {
     private Parent root;
@@ -30,20 +31,50 @@ public class MenuLogIn {
     private Label errorMsg;
 
     public void compararEntradaConLista(ActionEvent event) throws IOException {
-        ListaDeMedicos medicos = new ListaDeMedicos();
-        if (!medicos.isEmpty()){
-            if (!medicos.containsKey(cedula.getText())){
-                cambiarMenuSignUp();
-                return;
-            }
-            if (medicos.get(cedula.getText()).getPassword() != password.getAccessibleText()){
-                showErrorLabel();
-                return;
-            }
-            logIn(medicos.get(cedula.getText()));
+
+        ListaDeMedicos medicos = null;
+
+        try{
+
+            medicos = getListaDeMedicos();
+
+        } catch (FileNotFoundException e){
+
+            cambiarMenuSignUp();
             return;
+
+        } catch (IOException e){
+
+            throw new IOException(e);
+
+        } catch (ClassNotFoundException e) {
+
+            throw new RuntimeException(e);
+
         }
-        cambiarMenuSignUp();
+
+        if (!medicos.containsKey(cedula.getText())){
+
+            cambiarMenuSignUp();
+            return;
+
+        }
+        if (!medicos.get(cedula.getText()).getContrasena().equals(password.getText())){
+
+            showErrorLabel();
+            return;
+
+        }
+
+        logIn(medicos.get(cedula.getText()));
+    }
+
+    private static ListaDeMedicos getListaDeMedicos() throws IOException, ClassNotFoundException {
+        ListaDeMedicos medicos;
+        FileInputStream fileIn = new FileInputStream("listaDeMedicos");
+        ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+        medicos = (ListaDeMedicos) objectIn.readObject();
+        return medicos;
     }
 
     @FXML

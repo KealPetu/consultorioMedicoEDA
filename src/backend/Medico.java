@@ -1,14 +1,26 @@
 package backend;
 
-public class Medico {
-    private String username;
-    private String password;
+import java.io.Serializable;
 
-    public String getUsername() {
-        return username;
+public class Medico implements Serializable {
+    private String cedula;
+    private String contrasena;
+    private String nombre;
+    private String apellido;
+    private String fechaDeNacimiento;
+
+    public Medico(String nombre, String apellido, String fechaDeNacimiento, String contrasena) {
+        this. nombre = nombre;
+        this.apellido = apellido;
+        this.fechaDeNacimiento = fechaDeNacimiento;
+        this.contrasena = contrasena;
     }
 
-    public String getPassword() {
-        return password;
+    public String getCedula() {
+        return cedula;
+    }
+
+    public String getContrasena() {
+        return contrasena;
     }
 }

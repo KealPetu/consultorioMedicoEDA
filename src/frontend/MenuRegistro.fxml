@@ -48,7 +48,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.MenuRegistro">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -96,10 +96,10 @@
                   <Font name="Hack Regular" size="32.0" />
                </font>
             </Label>
-            <TextField layoutX="242.0" layoutY="40.0" promptText="Ej. Juan" />
-            <TextField layoutX="242.0" layoutY="75.0" promptText="Ej. Perez" />
-            <TextField layoutX="242.0" layoutY="110.0" promptText="Ej. 1234567890" />
-            <DatePicker layoutX="242.0" layoutY="145.0" promptText="Ej. 02-02-2004" />
+            <TextField fx:id="nombre" layoutX="242.0" layoutY="40.0" promptText="Ej. Juan" />
+            <TextField fx:id="apellido" layoutX="242.0" layoutY="75.0" promptText="Ej. Perez" />
+            <TextField fx:id="cedula" layoutX="242.0" layoutY="110.0" promptText="Ej. 1234567890" />
+            <DatePicker fx:id="fechaDeNacimiento" layoutX="242.0" layoutY="145.0" promptText="Ej. 16/2/2002" />
             <Label layoutX="20.0" layoutY="41.0" text="Nombre: " textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
@@ -130,15 +130,17 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <PasswordField layoutX="242.0" layoutY="215.0" />
-            <PasswordField layoutX="242.0" layoutY="180.0" />
-            <Hyperlink layoutX="14.0" layoutY="8.0" text="&lt;- Regresar" />
-            <Button layoutX="279.0" layoutY="253.0" mnemonicParsing="false" text="Registrarme" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="454.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+            <PasswordField fx:id="contrasenaRepetida" layoutX="242.0" layoutY="215.0" />
+            <PasswordField fx:id="contrasena" layoutX="242.0" layoutY="180.0" />
+            <Hyperlink fx:id="enlaceDeRegreso" layoutX="14.0" layoutY="8.0" text="&lt;- Regresar" />
+            <Button fx:id="botonDeRegistro" layoutX="279.0" layoutY="253.0" mnemonicParsing="false" onAction="#registrarNuevoMedico" text="Registrarme" />
+            <ImageView fitHeight="73.0" fitWidth="80.0" layoutX="517.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/images/hospital.png" />
                </image>
             </ImageView>
+            <Label fx:id="errorUsuarioExistente" layoutX="417.0" layoutY="114.0" opacity="0.0" text="Este usuario ya existe!" textAlignment="CENTER" textFill="RED" />
+            <Label fx:id="errorContrasenaNoCoincide" layoutX="417.0" layoutY="219.0" opacity="0.0" text="Las contrasenas no coinciden!" textFill="RED" />
          </children>
     </AnchorPane>
   </children>
