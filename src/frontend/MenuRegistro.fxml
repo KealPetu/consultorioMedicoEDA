@@ -132,7 +132,7 @@
             </Label>
             <PasswordField fx:id="contrasenaRepetida" layoutX="242.0" layoutY="215.0" />
             <PasswordField fx:id="contrasena" layoutX="242.0" layoutY="180.0" />
-            <Hyperlink fx:id="enlaceDeRegreso" layoutX="14.0" layoutY="8.0" text="&lt;- Regresar" />
+            <Hyperlink fx:id="enlaceDeRegreso" layoutX="14.0" layoutY="8.0" onAction="#regresarAMenuLogIn" text="&lt;- Regresar" />
             <Button fx:id="botonDeRegistro" layoutX="279.0" layoutY="253.0" mnemonicParsing="false" onAction="#registrarNuevoMedico" text="Registrarme" />
             <ImageView fitHeight="73.0" fitWidth="80.0" layoutX="517.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
