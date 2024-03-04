@@ -96,9 +96,9 @@
                   <Font name="Hack Regular" size="32.0" />
                </font>
             </Label>
-            <TextField fx:id="nombre" layoutX="242.0" layoutY="40.0" promptText="Ej. Juan" />
-            <TextField fx:id="apellido" layoutX="242.0" layoutY="75.0" promptText="Ej. Perez" />
-            <TextField fx:id="cedula" layoutX="242.0" layoutY="110.0" promptText="Ej. 1234567890" />
+            <TextField fx:id="campoDeNombre" layoutX="242.0" layoutY="40.0" promptText="Ej. Juan" />
+            <TextField fx:id="campoDeApellido" layoutX="242.0" layoutY="75.0" promptText="Ej. Perez" />
+            <TextField fx:id="campoDeCedula" layoutX="242.0" layoutY="110.0" promptText="Ej. 1234567890" />
             <DatePicker fx:id="fechaDeNacimiento" layoutX="242.0" layoutY="145.0" promptText="Ej. 16/2/2002" />
             <Label layoutX="20.0" layoutY="41.0" text="Nombre: " textAlignment="CENTER">
                <font>
@@ -130,9 +130,9 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <PasswordField fx:id="contrasenaRepetida" layoutX="242.0" layoutY="215.0" />
-            <PasswordField fx:id="contrasena" layoutX="242.0" layoutY="180.0" />
-            <Hyperlink fx:id="enlaceDeRegreso" layoutX="14.0" layoutY="8.0" onAction="#regresarAMenuLogIn" text="&lt;- Regresar" />
+            <PasswordField fx:id="campoDeContrasenaRepetida" layoutX="242.0" layoutY="215.0" />
+            <PasswordField fx:id="campoDeContrasena" layoutX="242.0" layoutY="180.0" />
+            <Hyperlink fx:id="enlaceDeRegreso" layoutX="14.0" layoutY="8.0" onAction="#irAMenuLogIn" text="&lt;- Regresar" />
             <Button fx:id="botonDeRegistro" layoutX="279.0" layoutY="253.0" mnemonicParsing="false" onAction="#registrarNuevoMedico" text="Registrarme" />
             <ImageView fitHeight="73.0" fitWidth="80.0" layoutX="517.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -141,6 +141,9 @@
             </ImageView>
             <Label fx:id="errorUsuarioExistente" layoutX="417.0" layoutY="114.0" opacity="0.0" text="Este usuario ya existe!" textAlignment="CENTER" textFill="RED" />
             <Label fx:id="errorContrasenaNoCoincide" layoutX="417.0" layoutY="219.0" opacity="0.0" text="Las contrasenas no coinciden!" textFill="RED" />
+             <Label fx:id="usuarioCreado" layoutX="384.0" layoutY="257.0" opacity="0.0" text="Usuario Creado Exitosamente!" textFill="#059003" />
+            <Label fx:id="contrasenaPequena" layoutX="415.0" layoutY="184.0" opacity="0.0" prefHeight="18.0" prefWidth="148.0" text="Minimo 8 caracteres!" textFill="RED" />
+            <Label fx:id="cedulaNoValida" layoutX="415.0" layoutY="114.0" opacity="0.0" text="Cedula no valida!" textFill="RED" />
          </children>
     </AnchorPane>
   </children>

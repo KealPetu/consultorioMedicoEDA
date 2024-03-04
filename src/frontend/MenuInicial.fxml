@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="borde" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.MenuInicial">
+   <left>
+      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="151.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="680.0" prefWidth="150.0" style="-fx-background-color: gray;">
+               <children>
+                  <Button fx:id="botonHome" contentDisplay="BOTTOM" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#irAHome" prefHeight="56.0" prefWidth="109.0" style="-fx-background-color: #53cfe0;" text="       Home" textAlignment="RIGHT" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/images/home.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="botonLogOut" layoutX="20.0" layoutY="637.0" mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: #53cfe0;" text="        Logout" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/images/logout.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="botonCalendario" layoutX="24.0" layoutY="108.0" mnemonicParsing="false" onAction="#irAAgendar" style="-fx-background-color: #53cfe0;" text="Agendar" textAlignment="RIGHT" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/images/calendario.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="botonPacientes" layoutX="9.0" layoutY="178.0" mnemonicParsing="false" onAction="#irAPacientes" style="-fx-background-color: #53cfe0;" text="       Pacientes" textAlignment="RIGHT" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/images/paciente.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-1.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/images/EPNIcon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </left>
+   <top>
+      <HBox prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="40.0" prefWidth="1282.0" style="-fx-background-color: gray;">
+               <children>
+                  <Label fx:id="mensajeDeBienvenida" layoutX="180.0" layoutY="3.0" prefHeight="35.0" prefWidth="320.0" text="Bienvenido ">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <Glow />
+               </effect>
+            </Pane>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

@@ -4,49 +4,52 @@ import backend.ListaDeMedicos;
 import backend.Medico;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 
 import java.io.*;
 
-public class MenuRegistro {
-    private Parent root;
-    private Scene scene;
-    private Stage stage;
+public class MenuRegistro extends MenuParent{
     @FXML
-    private TextField nombre;
+    private TextField campoDeNombre;
     @FXML
-    private TextField apellido;
+    private TextField campoDeApellido;
     @FXML
-    private TextField cedula;
+    private TextField campoDeCedula;
     @FXML
     private DatePicker fechaDeNacimiento;
     @FXML
-    private PasswordField contrasena,
-            contrasenaRepetida;
+    private PasswordField campoDeContrasena;
+    @FXML
+    private PasswordField campoDeContrasenaRepetida;
     @FXML
     private Hyperlink enlaceDeRegreso;
     @FXML
     private Button botonDeRegistro;
     @FXML
-    private Label errorUsuarioExistente,
-            errorContrasenaNoCoincide;
+    private Label errorUsuarioExistente;
+    @FXML
+    private Label errorContrasenaNoCoincide;
+    @FXML
+    private Label usuarioCreado;
+    @FXML
+    private Label contrasenaPequena;
+    @FXML
+    private Label cedulaNoValida;
     private File file = new File("listaDeMedicos");
 
     @FXML
     public void registrarNuevoMedico(ActionEvent event) throws IOException {
 
         if (contrasenasNoSonIguales()) return;
+        if (contrasenaMenosDeOchoChar())return;
+        if (cedulaNoEsValida())return;
 
         try{
 
             ListaDeMedicos medicos = getListaDeMedicos();
             if (yaExisteMedico(medicos)) return;
             escribirEnElArchivo(medicos);
+            showUserCreatedLabel();
 
         }catch (FileNotFoundException e) {
 
@@ -57,20 +60,38 @@ public class MenuRegistro {
         }
     }
 
-    @FXML
-    public void regresarAMenuLogIn(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../frontend/MenuLogIn.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    private boolean cedulaNoEsValida() {
+        if (campoDeCedula.getText().length() < 10){
+            cedulaNoValida.setOpacity(1);
+            return true;
+        }
+        cedulaNoValida.setOpacity(0);
+        return false;
+    }
+
+    private boolean contrasenaMenosDeOchoChar() {
+        if (campoDeContrasena.getText().length() < 8) {
+            contrasenaPequena.setOpacity(1);
+            return true;
+        }
+        contrasenaPequena.setOpacity(0);
+        return false;
+    }
+
+    private void showUserCreatedLabel() {
+        usuarioCreado.setOpacity(1);
+    }
+    private void doNotShowUserCreatedLabel() {
+        usuarioCreado.setOpacity(0);
     }
 
     private boolean contrasenasNoSonIguales() {
-        if (!contrasena.getText().equals(contrasenaRepetida.getText())){
-            showPswrdErrorLabel();
+        if (!campoDeContrasena.getText().equals(campoDeContrasenaRepetida.getText())){
+            errorContrasenaNoCoincide.setOpacity(1);
+            doNotShowUserCreatedLabel();
             return true;
         }
+        errorContrasenaNoCoincide.setOpacity(0);
         return false;
     }
 
@@ -78,7 +99,7 @@ public class MenuRegistro {
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutputStream);
         ListaDeMedicos medicos = new ListaDeMedicos();
-        medicos.put(cedula.getText(), new Medico(nombre.getText(), apellido.getText(), fechaDeNacimiento.getAccessibleText(), contrasena.getText()));
+        medicos.put(campoDeCedula.getText(), new Medico(campoDeNombre.getText(), campoDeApellido.getText(), fechaDeNacimiento.getPromptText(), campoDeContrasena.getText()));
         objectOutput.writeObject(medicos);
         objectOutput.close();
         fileOutputStream.close();
@@ -87,15 +108,16 @@ public class MenuRegistro {
     private void escribirEnElArchivo(ListaDeMedicos medicos) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutputStream);
-        medicos.put(cedula.getText(), new Medico(nombre.getText(), apellido.getText(), fechaDeNacimiento.getAccessibleText(), contrasena.getText()));
+        medicos.put(campoDeCedula.getText(), new Medico(campoDeNombre.getText(), campoDeApellido.getText(), fechaDeNacimiento.getPromptText(), campoDeContrasena.getText()));
         objectOutput.writeObject(medicos);
         objectOutput.close();
         fileOutputStream.close();
     }
 
     private boolean yaExisteMedico(ListaDeMedicos medicos) {
-        if (medicos.containsKey(cedula.getText())){
+        if (medicos.existeMedicoConCedula(campoDeContrasena.getText())){
             showUserErrorLabel();
+            doNotShowUserCreatedLabel();
             return true;
         }
         return false;
@@ -108,15 +130,10 @@ public class MenuRegistro {
         return medicos;
     }
 
-    private void showPswrdErrorLabel() {
-        errorContrasenaNoCoincide.setOpacity(1);
-        errorUsuarioExistente.setOpacity(0);
-
-    }
-
     private void showUserErrorLabel() {
         errorUsuarioExistente.setOpacity(1);
         errorContrasenaNoCoincide.setOpacity(0);
-
+        usuarioCreado.setOpacity(0);
+        contrasenaPequena.setOpacity(0);
     }
 }

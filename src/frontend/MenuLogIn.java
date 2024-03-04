@@ -2,22 +2,23 @@ package frontend;
 
 import backend.ListaDeMedicos;
 import backend.Medico;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
-public class MenuLogIn {
-    private Parent root;
-    private Scene scene;
-    private Stage stage;
+public class MenuLogIn extends MenuParent{
+
 
     @FXML
     private TextField cedula;
@@ -26,7 +27,7 @@ public class MenuLogIn {
     @FXML
     private Button loginButton;
     @FXML
-    private Hyperlink signUpLink;
+    private Button signUpButton;
     @FXML
     private Label errorMsg;
 
@@ -77,16 +78,8 @@ public class MenuLogIn {
         return medicos;
     }
 
-    @FXML
-    private void cambiarMenuSignUp(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../frontend/MenuRegistro.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
     private void cambiarMenuSignUp() throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../frontend/MenuRegistro.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/frontend/MenuRegistro.fxml"));
         stage = (Stage)loginButton.getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -97,8 +90,27 @@ public class MenuLogIn {
         errorMsg.setOpacity(1);
     }
 
-    private void logIn(Medico medico) {
+    @FXML
+    private void doNotShowErrorLabel(ActionEvent event) {
+        errorMsg.setOpacity(0);
+    }
+    private void doNotShowErrorLabel() {
+        errorMsg.setOpacity(0);
+    }
 
+    private void logIn(Medico medico) throws IOException {
+        irAMenuInicial(medico);
+    }
+
+    private void irAMenuInicial(Medico medico) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/frontend/MenuInicial.fxml"));
+        root = loader.load();
+        MenuInicial menuInicial = loader.getController();
+        menuInicial.setMedico(medico);
+        stage = (Stage)loginButton.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
