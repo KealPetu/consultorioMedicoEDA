@@ -1,6 +1,8 @@
 package frontend;
 
+import backend.ListaDeMedicos;
 import backend.Medico;
+import backend.Paciente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,10 +34,12 @@ public class SceneCrearPaciente {
     @FXML
     private Button RegistrarPaciente;
     @FXML
-    private ChoiceBox eleccionDeSexo;
+    private ChoiceBox<String> eleccionDeSexo;
     private Medico medico;
+    private ListaDeMedicos medicos;
 
     public void registrarPaciente(ActionEvent event) throws IOException {
+        medico.enlistarPaciente(new Paciente(campoNombre.getText(), campoApellido.getText(), campoCedula.getText(), fechaDeNacimiento.getAccessibleText(), Double.parseDouble(campoPeso.getText()), Double.parseDouble(campoAltura.getText())));
         cambiarAScenePacientes(event);
     }
 
@@ -46,11 +50,12 @@ public class SceneCrearPaciente {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/frontend/ScenePacientes.fxml"));
         AnchorPane nuevoAnchorPane = loader.load();
         ScenePacientes scenePacientes = loader.getController();
-        scenePacientes.setMedico(medico);
+        scenePacientes.initialize(medico, medicos);
         borderPane.setCenter(nuevoAnchorPane);
     }
 
-    public void setMedico(Medico medico) {
+    public void setMedicoyLista(Medico medico, ListaDeMedicos medicos) {
         this.medico = medico;
+        this.medicos = medicos;
     }
 }

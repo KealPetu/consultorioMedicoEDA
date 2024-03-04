@@ -30,10 +30,12 @@ public class MenuLogIn extends MenuParent{
     private Button signUpButton;
     @FXML
     private Label errorMsg;
+    private ListaDeMedicos medicos;
+    private Medico medicoActual;
 
     public void compararEntradaConLista(ActionEvent event) throws IOException {
 
-        ListaDeMedicos medicos = null;
+        medicos = null;
 
         try{
 
@@ -67,12 +69,13 @@ public class MenuLogIn extends MenuParent{
 
         }
 
-        logIn(medicos.get(cedula.getText()));
+        medicoActual = medicos.get(cedula.getText());
+        logIn();
     }
 
     private static ListaDeMedicos getListaDeMedicos() throws IOException, ClassNotFoundException {
         ListaDeMedicos medicos;
-        FileInputStream fileIn = new FileInputStream("listaDeMedicos");
+        FileInputStream fileIn = new FileInputStream("listaDeMedicos.txt");
         ObjectInputStream objectIn = new ObjectInputStream(fileIn);
         medicos = (ListaDeMedicos) objectIn.readObject();
         return medicos;
@@ -98,15 +101,15 @@ public class MenuLogIn extends MenuParent{
         errorMsg.setOpacity(0);
     }
 
-    private void logIn(Medico medico) throws IOException {
-        irAMenuInicial(medico);
+    private void logIn() throws IOException {
+        irAMenuInicial();
     }
 
-    private void irAMenuInicial(Medico medico) throws IOException {
+    private void irAMenuInicial() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/frontend/MenuInicial.fxml"));
         root = loader.load();
         MenuInicial menuInicial = loader.getController();
-        menuInicial.setMedico(medico);
+        menuInicial.setMedicoyLista(medicoActual, medicos);
         stage = (Stage)loginButton.getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

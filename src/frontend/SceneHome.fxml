@@ -40,16 +40,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1130.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1130.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.SceneHome">
    <children>
-      <TableView layoutX="165.0" layoutY="115.0" prefHeight="450.0" prefWidth="800.0">
+      <TableView fx:id="tablaCitas" layoutX="165.0" layoutY="115.0" prefHeight="450.0" prefWidth="800.0">
         <columns>
-          <TableColumn prefWidth="100.0" text="Hora" />
+          <TableColumn fx:id="celdaHoraDeCita" prefWidth="100.0" text="Hora" />
           <TableColumn prefWidth="300.0" text="Paciente" />
-            <TableColumn prefWidth="400.0" text="Razon" />
+            <TableColumn fx:id="celdaRazonDeCita" prefWidth="400.0" text="Razon" />
         </columns>
       </TableView>
-      <DatePicker layoutX="770.0" layoutY="70.0" />
+      <DatePicker fx:id="fechaDeCita" layoutX="770.0" layoutY="70.0" />
       <Text layoutX="601.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pacientes para el dia:" textAlignment="CENTER" wrappingWidth="174.66666666666674" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1029.0" layoutY="516.0" pickOnBounds="true" preserveRatio="true">
          <image>

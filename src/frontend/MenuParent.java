@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MenuParent {
+public abstract class MenuParent{
     protected Parent root;
     protected Scene scene;
     protected Stage stage;

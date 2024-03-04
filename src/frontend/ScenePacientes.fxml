@@ -44,11 +44,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1130.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.ScenePacientes">
    <children>
-      <TableView layoutX="165.0" layoutY="115.0" prefHeight="450.0" prefWidth="800.0">
+      <TableView fx:id="tablaPacientes" layoutX="165.0" layoutY="115.0" prefHeight="450.0" prefWidth="800.0">
         <columns>
-          <TableColumn prefWidth="266.67" text="Apellidos" />
-            <TableColumn prefWidth="266.67" text="Nombres" />
-            <TableColumn prefWidth="266.67" text="Cédula" />
+          <TableColumn fx:id="celdaApellidoPaciente" prefWidth="266.67" text="Apellidos" />
+            <TableColumn fx:id="celdaNombrePaciente" prefWidth="266.67" text="Nombres" />
+            <TableColumn fx:id="celdaCedulaPaciente" prefWidth="266.67" text="Cédula" />
         </columns>
       </TableView>
       <Text layoutX="165.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pacientes" textAlignment="CENTER" wrappingWidth="81.67840576171875" />

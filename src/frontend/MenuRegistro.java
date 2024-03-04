@@ -35,7 +35,7 @@ public class MenuRegistro extends MenuParent{
     private Label contrasenaPequena;
     @FXML
     private Label cedulaNoValida;
-    private File file = new File("listaDeMedicos");
+    private File file = new File("listaDeMedicos.txt");
 
     @FXML
     public void registrarNuevoMedico(ActionEvent event) throws IOException {
@@ -99,7 +99,7 @@ public class MenuRegistro extends MenuParent{
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutputStream);
         ListaDeMedicos medicos = new ListaDeMedicos();
-        medicos.put(campoDeCedula.getText(), new Medico(campoDeNombre.getText(), campoDeApellido.getText(), fechaDeNacimiento.getPromptText(), campoDeContrasena.getText()));
+        medicos.put(campoDeCedula.getText(), new Medico(campoDeNombre.getText(), campoDeApellido.getText(), fechaDeNacimiento.getPromptText(), campoDeContrasena.getText(), campoDeCedula.getText()));
         objectOutput.writeObject(medicos);
         objectOutput.close();
         fileOutputStream.close();
@@ -108,7 +108,7 @@ public class MenuRegistro extends MenuParent{
     private void escribirEnElArchivo(ListaDeMedicos medicos) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutputStream);
-        medicos.put(campoDeCedula.getText(), new Medico(campoDeNombre.getText(), campoDeApellido.getText(), fechaDeNacimiento.getPromptText(), campoDeContrasena.getText()));
+        medicos.put(campoDeCedula.getText(), new Medico(campoDeNombre.getText(), campoDeApellido.getText(), fechaDeNacimiento.getPromptText(), campoDeContrasena.getText(), campoDeCedula.getText()));
         objectOutput.writeObject(medicos);
         objectOutput.close();
         fileOutputStream.close();

@@ -1,5 +1,6 @@
 package frontend;
 
+import backend.ListaDeMedicos;
 import backend.Medico;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,11 +10,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 public class MenuInicial extends MenuParent{
-
     private Medico medicoActual;
+    private ListaDeMedicos medicos;
     @FXML
     private Label mensajeDeBienvenida;
     @FXML
@@ -26,10 +30,9 @@ public class MenuInicial extends MenuParent{
     private Button botonLogOut;
     @FXML
     private BorderPane borde;
-    @FXML
-    private FXMLLoader loader;
-    public void setMedico(Medico medico) {
+    public void setMedicoyLista(Medico medico, ListaDeMedicos medicos) {
         this.medicoActual = medico;
+        this.medicos = medicos;
         setMensajeDeBienvenida();
     }
     public Medico getMedicoActual() {
@@ -42,14 +45,26 @@ public class MenuInicial extends MenuParent{
 
     @FXML
     public void logOut(ActionEvent event) throws IOException {
+        medicos.put(medicoActual.getCedula(), medicoActual);
+        //escribirEnElArchivo(); //TODO: verificar error de escritura de archivo
         irAMenuLogIn(event);
         medicoActual = null;
+    }
+
+    public void escribirEnElArchivo() throws IOException {
+        File newFile = new File("test.txt");
+        ObjectOutputStream objOut = new ObjectOutputStream(new FileOutputStream(newFile));
+        objOut.writeObject(medicos);
+        objOut.close();
+
     }
 
     @FXML
     public void irAHome(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/frontend/SceneHome.fxml"));
         AnchorPane view = loader.load();
+        SceneHome sceneHome = loader.getController();
+        sceneHome.initialize(medicoActual, medicos);
         borde.setCenter(view);
 
     }
@@ -58,12 +73,15 @@ public class MenuInicial extends MenuParent{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/frontend/ScenePacientes.fxml"));
         AnchorPane view = loader.load();
         ScenePacientes scenePacientes = loader.getController();
-        scenePacientes.setMedico(medicoActual);
+        scenePacientes.initialize(medicoActual, medicos);
         borde.setCenter(view);
     }
     @FXML
     public void irAAgendar(ActionEvent event) throws IOException {
-        AnchorPane view = FXMLLoader.load(getClass().getResource("/frontend/SceneAgendarCitas.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/frontend/SceneAgendarCitas.fxml"));
+        AnchorPane view = loader.load();
+        SceneAgendarCitas sceneAgendarCitas = loader.getController();
+        sceneAgendarCitas.initialize(medicoActual, medicos);
         borde.setCenter(view);
     }
 }
