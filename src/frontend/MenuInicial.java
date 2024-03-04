@@ -46,13 +46,13 @@ public class MenuInicial extends MenuParent{
     @FXML
     public void logOut(ActionEvent event) throws IOException {
         medicos.put(medicoActual.getCedula(), medicoActual);
-        //escribirEnElArchivo(); //TODO: verificar error de escritura de archivo
+        escribirEnElArchivo();
         irAMenuLogIn(event);
         medicoActual = null;
     }
 
     public void escribirEnElArchivo() throws IOException {
-        File newFile = new File("test.txt");
+        File newFile = new File("listaDeMedicos.txt");
         ObjectOutputStream objOut = new ObjectOutputStream(new FileOutputStream(newFile));
         objOut.writeObject(medicos);
         objOut.close();

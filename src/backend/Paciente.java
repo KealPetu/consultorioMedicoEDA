@@ -1,6 +1,8 @@
 package backend;
 
-public class Paciente {
+import java.io.Serializable;
+
+public class Paciente implements Serializable {
     private String nombre;
     private String apellido;
     private String cedula;

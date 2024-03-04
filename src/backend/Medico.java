@@ -11,7 +11,7 @@ public class Medico implements Serializable {
     private String cedula;
     private String fechaDeNacimiento;
     private LinkedList<Paciente> listaDePacientes;
-    private Stack citas;
+    private ArregloDePilasDeCitas arregloDePilasDeCitas;
 
     public Medico(String nombre, String apellido, String fechaDeNacimiento, String contrasena, String cedula) {
 
@@ -21,7 +21,7 @@ public class Medico implements Serializable {
         this.contrasena = contrasena;
         this.cedula = cedula;
         this.listaDePacientes = new LinkedList();
-        this.citas = new Stack<Cita>();
+        this.arregloDePilasDeCitas = new ArregloDePilasDeCitas();
     }
 
     public String getNombre(){
@@ -49,20 +49,11 @@ public class Medico implements Serializable {
     public void setListaDePacientes(LinkedList<Paciente> listaDePacientes) {
         this.listaDePacientes = listaDePacientes;
     }
-
-    public void setCitaMedica(Cita citaMedica) {
-        citas.push(citaMedica);
+    public void agregarCita(Cita nuevaCita, int dia, int mes, int año){
+        arregloDePilasDeCitas.agregarCita(nuevaCita, dia, mes, año);
     }
 
-    public Stack getCitas() {
-        return citas;
-    }
-
-    public void setCitas(Stack<Cita> citas) {
-        this.citas = citas;
-    }
-
-    public int getCantidadDeCitas() {
-        return citas.size();
+    public Stack<Cita> getCitasDeHoy(int dia, int mes, int año) {
+        return arregloDePilasDeCitas.getCitas(dia, mes, año);
     }
 }

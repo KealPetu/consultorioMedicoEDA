@@ -61,7 +61,7 @@ public class MenuRegistro extends MenuParent{
     }
 
     private boolean cedulaNoEsValida() {
-        if (campoDeCedula.getText().length() < 10){
+        if (!campoDeCedula.getText().matches("[0-9]+")||campoDeCedula.getText().length() != 10){
             cedulaNoValida.setOpacity(1);
             return true;
         }

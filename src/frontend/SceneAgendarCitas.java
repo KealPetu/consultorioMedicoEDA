@@ -11,6 +11,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class SceneAgendarCitas {
 
     @FXML
@@ -47,7 +50,19 @@ public class SceneAgendarCitas {
 
     @FXML
     public void agendarCita(ActionEvent event){
-        int horaDeCitaDisponible = medico.getCantidadDeCitas() + 6;
-        medico.setCitaMedica(new Cita(campoDeRazonDeCitaMedica.getText(), seleccionadorDeFecha.getAccessibleText(), horaDeCitaDisponible));
+        LocalDate fecha = seleccionadorDeFecha.getValue();
+
+        if (fecha != null) {
+            DateTimeFormatter formateador = DateTimeFormatter.ofPattern("d/M/yyyy");
+            String fechaFormateada = fecha.format(formateador);
+
+            int dia = fecha.getDayOfMonth();
+            int mes = fecha.getMonthValue();
+            int año = fecha.getYear()-2024;
+
+            medico.agregarCita(new Cita(campoDeRazonDeCitaMedica.getText()), dia, mes, año);
+        } else {
+            System.out.println("Por favor, selecciona una fecha antes de agendar la cita.");
+        }
     }
 }
